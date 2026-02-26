@@ -830,9 +830,11 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding-top: 24px;
+  padding: 20px 28px 24px;
   border-top: 1px solid var(--cream-darker);
   flex-wrap: wrap;
+  background: var(--white);
+  border-radius: 0 0 20px 20px;
 }
 
 .modal-total {
@@ -1323,20 +1325,90 @@ body {
 ─────────────────────────────────────────── */
 @media (max-width: 640px) {
   .header-inner { padding: 0 16px; }
-  /* .logo-text-wrap { display: none; } */
   .site-hero { padding: 40px 16px 36px; }
   .site-main { padding: 28px 16px 60px; }
   .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-  .modal-content { padding: 20px; }
-  .modal-footer { flex-direction: column; }
-  .btn-add-cart { width: 100%; }
-  .modal-name { font-size: 1.35rem; }
+
+  /* ── Modal: bottom sheet no mobile ── */
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-box {
+    border-radius: 24px 24px 0 0;
+    max-height: 92svh;        /* usa svh para considerar barra do browser */
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    /* pequena "alça" visual no topo */
+  }
+
+  .modal-box::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--cream-darker);
+    border-radius: 2px;
+    margin: 10px auto 0;
+    flex-shrink: 0;
+  }
+
+  /* Imagem compacta: 40% da viewport em vez de 16/9 */
+  .modal-img-wrap {
+    aspect-ratio: unset;
+    height: clamp(140px, 36vw, 200px);
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+
+  /* Conteúdo rolável, footer fora do scroll */
+  .modal-content {
+    padding: 16px 18px 0;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Footer sempre visível na base */
+  .modal-footer {
+    flex-direction: row;
+    flex-shrink: 0;
+    padding: 12px 18px 20px;
+    background: var(--white);
+    border-top: 1px solid var(--cream-darker);
+    /* compensa a barra home do iOS */
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    gap: 12px;
+    align-items: center;
+    /* tira do fluxo normal do modal-content */
+    position: sticky;
+    bottom: 0;
+  }
+
+  .btn-add-cart {
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* Texto menor para economizar espaço vertical */
+  .modal-name    { font-size: 1.2rem; margin-bottom: 6px; }
+  .modal-desc    { font-size: .82rem; margin-bottom: 14px; line-height: 1.5; }
+  .modal-badge   { margin-bottom: 8px; }
+  .config-group  { margin-bottom: 16px; }
+  .modal-note    { padding: 10px 12px; font-size: .8rem; margin-bottom: 14px; }
+  .modal-total-price { font-size: 1.3rem; }
 }
 
 @media (max-width: 400px) {
   .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .card-body { padding: 14px; }
   .card-name { font-size: 1rem; }
+
+  .modal-img-wrap { height: 130px; }
+  .modal-content  { padding: 14px 14px 0; }
+  .modal-footer   { padding: 10px 14px max(16px, env(safe-area-inset-bottom)); }
 }
 
 /* ───────────────────────────────────────────

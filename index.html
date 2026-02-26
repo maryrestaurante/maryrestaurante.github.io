@@ -115,7 +115,7 @@
         <button class="modal-close" id="btnCloseModal" aria-label="Fechar">✕</button>
       </div>
 
-      <!-- Conteúdo -->
+      <!-- Conteúdo rolável -->
       <div class="modal-content">
         <span class="modal-badge" id="modalBadge"></span>
         <h2 class="modal-name" id="modalName"></h2>
@@ -135,7 +135,7 @@
         </div>
 
         <!-- Quantidade -->
-        <div class="config-group">
+        <div class="config-group" style="padding-bottom: 8px;">
           <div class="config-label">🔢 Quantidade</div>
           <div class="qty-control">
             <button class="qty-btn" id="btnQtyMinus" aria-label="Diminuir quantidade">−</button>
@@ -143,19 +143,19 @@
             <button class="qty-btn" id="btnQtyPlus" aria-label="Aumentar quantidade">+</button>
           </div>
         </div>
-
-        <!-- Footer do modal -->
-        <div class="modal-footer">
-          <div class="modal-total">
-            <span class="modal-total-label">Total</span>
-            <span class="modal-total-price" id="modalTotalPrice">R$ 0,00</span>
-          </div>
-          <button class="btn-add-cart" id="btnAddCart" disabled>
-            <span>🛒</span> Adicionar ao Carrinho
-          </button>
-        </div>
-
       </div>
+
+      <!-- Footer fixo — sempre visível (sticky no mobile, normal no desktop) -->
+      <div class="modal-footer">
+        <div class="modal-total">
+          <span class="modal-total-label">Total</span>
+          <span class="modal-total-price" id="modalTotalPrice">R$ 0,00</span>
+        </div>
+        <button class="btn-add-cart" id="btnAddCart" disabled>
+          <span>🛒</span> Adicionar ao Carrinho
+        </button>
+      </div>
+
     </div>
   </div>
 
