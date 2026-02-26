@@ -593,29 +593,45 @@ body {
   pointer-events: all;
 }
 
+/* ───────────────────────────────────────────
+   MODAL — layout compacto (imagem lateral)
+─────────────────────────────────────────── */
+
+/*
+  Estrutura no desktop:
+  ┌──────────────────────────────────────────┐
+  │  [imagem 220px]  │  conteúdo rolável     │
+  │                  │  ──────────────────── │
+  │                  │  [footer fixo]        │
+  └──────────────────────────────────────────┘
+*/
+
 .modal-box {
   background: var(--white);
   border-radius: 20px;
-  max-width: 640px;
+  max-width: 760px;
   width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: row;       /* imagem ao lado */
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
   transform: translateY(30px) scale(.96);
   transition: transform .35s cubic-bezier(.34,1.56,.64,1);
-  scrollbar-width: thin;
 }
 
 .modal-overlay.open .modal-box {
   transform: translateY(0) scale(1);
 }
 
+/* Coluna da imagem — largura fixa, ocupa toda a altura */
 .modal-img-wrap {
   position: relative;
-  aspect-ratio: 16/9;
+  width: 220px;
+  flex-shrink: 0;
   overflow: hidden;
   background: var(--cream-dark);
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 0 0 20px;
 }
 
 .modal-img {
@@ -631,21 +647,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 6rem;
-  background: linear-gradient(135deg, var(--cream-dark), var(--cream-darker));
+  font-size: 4rem;
+  background: linear-gradient(160deg, var(--cream-dark), var(--cream-darker));
 }
 
 .modal-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  background: rgba(255,255,255,.9);
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,.92);
   backdrop-filter: blur(4px);
   border: none;
   border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  font-size: 1.1rem;
+  width: 34px;
+  height: 34px;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -653,64 +669,77 @@ body {
   transition: var(--transition);
   color: var(--chocolate);
   box-shadow: var(--shadow-sm);
+  z-index: 2;
 }
 
 .modal-close:hover { background: white; transform: scale(1.1); }
 
+/* Coluna direita: scroll + footer fixo */
+.modal-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
 .modal-content {
-  padding: 28px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 22px 8px;
+  scrollbar-width: thin;
 }
 
 .modal-badge {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 50px;
-  font-size: .7rem;
+  font-size: .65rem;
   font-weight: 800;
   color: white;
   letter-spacing: .06em;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .modal-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.7rem;
+  font-size: 1.35rem;
   color: var(--chocolate);
   line-height: 1.2;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .modal-desc {
   color: var(--text-mid);
-  font-size: .9rem;
-  line-height: 1.65;
-  margin-bottom: 24px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .modal-note {
   background: rgba(201,150,44,.12);
   border: 1px solid rgba(201,150,44,.25);
   border-radius: 10px;
-  padding: 12px 16px;
-  font-size: .83rem;
+  padding: 9px 12px;
+  font-size: .78rem;
   color: var(--chocolate-mid);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   font-weight: 600;
 }
 
 /* Config Sections */
 .config-group {
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .config-label {
-  font-size: .75rem;
+  font-size: .7rem;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--text-light);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -824,17 +853,15 @@ body {
   padding: 0 4px;
 }
 
-/* Modal Footer */
+/* Modal Footer — fixo na base da coluna direita */
 .modal-footer {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 28px 24px;
+  gap: 12px;
+  padding: 14px 22px 18px;
   border-top: 1px solid var(--cream-darker);
-  flex-wrap: wrap;
   background: var(--white);
-  border-radius: 0 0 20px 20px;
 }
 
 .modal-total {
@@ -843,7 +870,7 @@ body {
 }
 
 .modal-total-label {
-  font-size: .72rem;
+  font-size: .65rem;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -852,34 +879,35 @@ body {
 
 .modal-total-price {
   font-family: "Archivo Black", serif;
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   color: var(--chocolate);
   font-weight: 700;
 }
 
 .btn-add-cart {
   flex: 1;
-  min-width: 180px;
+  min-width: 0;
   background: var(--chocolate);
   color: var(--white);
   border: none;
-  border-radius: 12px;
-  padding: 14px 24px;
+  border-radius: 10px;
+  padding: 12px 18px;
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: .95rem;
+  font-size: .88rem;
   cursor: pointer;
   transition: var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .btn-add-cart:hover {
   background: var(--chocolate-mid);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(61,31,13,.3);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(61,31,13,.28);
 }
 
 .btn-add-cart:disabled {
@@ -1327,23 +1355,23 @@ body {
   .header-inner { padding: 0 16px; }
   .site-hero { padding: 40px 16px 36px; }
   .site-main { padding: 28px 16px 60px; }
-  .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
 
-  /* ── Modal: bottom sheet no mobile ── */
+  /* Modal vira bottom sheet empilhado (vertical) */
   .modal-overlay {
     align-items: flex-end;
     padding: 0;
   }
 
   .modal-box {
+    flex-direction: column;       /* empilha: img em cima, conteúdo embaixo */
     border-radius: 24px 24px 0 0;
-    max-height: 92svh;        /* usa svh para considerar barra do browser */
-    max-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    /* pequena "alça" visual no topo */
+    max-height: 94svh;
+    max-height: 94vh;
+    max-width: 100%;
   }
 
+  /* Alça visual */
   .modal-box::before {
     content: '';
     display: block;
@@ -1351,65 +1379,49 @@ body {
     height: 4px;
     background: var(--cream-darker);
     border-radius: 2px;
-    margin: 10px auto 0;
+    margin: 10px auto 2px;
     flex-shrink: 0;
+    order: -1;
   }
 
-  /* Imagem compacta: 40% da viewport em vez de 16/9 */
   .modal-img-wrap {
-    aspect-ratio: unset;
-    height: clamp(140px, 36vw, 200px);
-    flex-shrink: 0;
+    width: 100%;
+    height: 160px;
     border-radius: 0;
-  }
-
-  /* Conteúdo rolável, footer fora do scroll */
-  .modal-content {
-    padding: 16px 18px 0;
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Footer sempre visível na base */
-  .modal-footer {
-    flex-direction: row;
     flex-shrink: 0;
-    padding: 12px 18px 20px;
-    background: var(--white);
-    border-top: 1px solid var(--cream-darker);
-    /* compensa a barra home do iOS */
-    padding-bottom: max(20px, env(safe-area-inset-bottom));
-    gap: 12px;
-    align-items: center;
-    /* tira do fluxo normal do modal-content */
-    position: sticky;
-    bottom: 0;
   }
 
-  .btn-add-cart {
-    min-width: 0;
+  .modal-right {
     flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Texto menor para economizar espaço vertical */
-  .modal-name    { font-size: 1.2rem; margin-bottom: 6px; }
-  .modal-desc    { font-size: .82rem; margin-bottom: 14px; line-height: 1.5; }
-  .modal-badge   { margin-bottom: 8px; }
-  .config-group  { margin-bottom: 16px; }
-  .modal-note    { padding: 10px 12px; font-size: .8rem; margin-bottom: 14px; }
-  .modal-total-price { font-size: 1.3rem; }
+  .modal-content {
+    padding: 16px 18px 4px;
+  }
+
+  .modal-footer {
+    padding: 12px 18px max(20px, env(safe-area-inset-bottom));
+  }
+
+  .modal-close {
+    /* No mobile, fecha pelo botão da alça — deixa o X no canto */
+    top: 8px;
+    right: 10px;
+  }
 }
 
 @media (max-width: 400px) {
-  .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .card-body { padding: 14px; }
-  .card-name { font-size: 1rem; }
-
+  .products-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card-body { padding: 12px; }
+  .card-name { font-size: .95rem; }
   .modal-img-wrap { height: 130px; }
-  .modal-content  { padding: 14px 14px 0; }
-  .modal-footer   { padding: 10px 14px max(16px, env(safe-area-inset-bottom)); }
+  .modal-content { padding: 12px 14px 4px; }
+  .modal-footer { padding: 10px 14px max(16px, env(safe-area-inset-bottom)); }
 }
+
 
 /* ───────────────────────────────────────────
    CART CONFIRM BANNER

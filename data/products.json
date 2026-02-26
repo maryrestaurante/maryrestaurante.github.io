@@ -22,6 +22,7 @@
       "name": "Mini Confeiteiro",
       "description": "Ovo de Páscoa decorado com confeitos coloridos, feito para encantar os pequenos e os grandes também. Uma verdadeira obra de arte comestível!",
       "image": "assets/images/mini-confeiteiro.jpg",
+      "image2": null,
       "imageFallback": "🍫",
       "flavors": [
         { "id": "branco", "label": "Chocolate Branco" },

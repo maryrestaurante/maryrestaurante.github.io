@@ -36,8 +36,6 @@ function updateHero(cat) {
   }, 180);
 }
 
-const cart = new CartManager({ onUpdate: renderCart });
-
 const $ = id => document.getElementById(id);
 
 const productGrid    = $('productGrid');
@@ -68,6 +66,11 @@ const cartCountBadge = $('cartCountBadge');
 const cartTotalVal   = $('cartTotalValue');
 const btnWhatsapp    = $('btnWhatsapp');
 const btnClearCart   = $('btnClearCart');
+
+// Cart — instanciado após todas as refs do DOM estarem prontas
+const cart = new CartManager({ onUpdate: renderCart });
+// Renderiza imediatamente com o que foi restaurado do localStorage
+renderCart(cart);
 
 // ── Bootstrap ──────────────────────────────────────────────────
 async function init() {
@@ -180,11 +183,18 @@ function openModal(productId) {
     quantity: 1,
   };
 
-  modalImg.src = modalProduct.image;
+  // Usa image2 (retrato, para coluna lateral no desktop) se disponível; senão usa image
+  const modalImgSrc = modalProduct.image2 || modalProduct.image;
+  modalImg.src = modalImgSrc;
   modalImg.alt = modalProduct.name;
   modalImg.style.display = 'block';
   modalImgFb.style.display = 'none';
   modalImg.onerror = () => {
+    // Se image2 falhou e era diferente de image, tenta o fallback para image
+    if (modalProduct.image2 && modalImg.src !== modalProduct.image) {
+      modalImg.src = modalProduct.image;
+      return;
+    }
     modalImg.style.display = 'none';
     modalImgFb.style.display = 'flex';
     modalImgFb.textContent = modalProduct.imageFallback;
