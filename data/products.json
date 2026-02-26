@@ -1,0 +1,106 @@
+{
+  "categories": [
+    {
+      "id": "pascoa",
+      "label": "Páscoa",
+      "icon": "🐰",
+      "description": "Ovos de Páscoa artesanais feitos com muito amor",
+      "active": true,
+      "default": true,
+      "hero": {
+        "tag": "🐰 Páscoa 2026",
+        "title": "Ovos de Páscoa\nfeitos com <em>amor</em>",
+        "subtitle": "Chegou a época mais gostosa do ano! Escolha o seu ovo preferido, personalize do seu jeito e surpreenda quem você ama.",
+        "ctaLabel": "🛍️ Ver Ovos de Páscoa"
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "mini-confeiteiro",
+      "category": "pascoa",
+      "name": "Mini Confeiteiro",
+      "description": "Ovo de Páscoa decorado com confeitos coloridos, feito para encantar os pequenos e os grandes também. Uma verdadeira obra de arte comestível!",
+      "image": "assets/images/mini-confeiteiro.jpg",
+      "imageFallback": "🍫",
+      "flavors": [
+        { "id": "branco", "label": "Chocolate Branco" },
+        { "id": "ao-leite", "label": "Chocolate ao Leite" }
+      ],
+      "weights": [
+        { "id": "150g", "label": "150g", "price": 35.00 }
+      ],
+      "badge": "Novo",
+      "badgeColor": "#e91e8c"
+    },
+    {
+      "id": "trufado",
+      "category": "pascoa",
+      "name": "Trufados",
+      "description": "Ovo com recheio cremoso irresistível. Casca de chocolate com recheio que derrete na boca. Disponível em vários sabores para agradar todos os gostos.",
+      "image": "assets/images/trufado.jpg",
+      "imageFallback": "🍫",
+      "flavors": [
+        { "id": "beijinho", "label": "Beijinho" },
+        { "id": "brigadeiro", "label": "Brigadeiro" },
+        { "id": "limao", "label": "Limão" },
+        { "id": "maracuja", "label": "Maracujá" },
+        { "id": "morango", "label": "Morango" },
+        { "id": "ninho", "label": "Ninho" }
+      ],
+      "weights": [
+        { "id": "150g", "label": "150g", "price": 25.00 },
+        { "id": "250g", "label": "250g", "price": 35.00 },
+        { "id": "350g", "label": "350g", "price": 55.00 }
+      ],
+      "badge": "Popular",
+      "badgeColor": "#f59e0b"
+    },
+    {
+      "id": "de-colher",
+      "category": "pascoa",
+      "name": "De Colher",
+      "description": "Ovo de Páscoa recheado com creme para comer de colher. Uma experiência única de sabor e textura que vai surpreender quem você ama.",
+      "image": "assets/images/de-colher.jpg",
+      "imageFallback": "🥄",
+      "flavors": [
+        { "id": "beijinho", "label": "Beijinho" },
+        { "id": "brigadeiro", "label": "Brigadeiro" },
+        { "id": "limao", "label": "Limão" },
+        { "id": "maracuja", "label": "Maracujá" },
+        { "id": "morango", "label": "Morango" },
+        { "id": "ninho", "label": "Ninho" }
+      ],
+      "weights": [
+        { "id": "150g", "label": "150g", "price": 25.00 },
+        { "id": "250g", "label": "250g", "price": 35.00 },
+        { "id": "350g", "label": "350g", "price": 60.00 }
+      ],
+      "badge": null,
+      "badgeColor": null
+    },
+    {
+      "id": "trio-de-ovos",
+      "category": "pascoa",
+      "name": "Trio de Ovos",
+      "description": "Kit especial com três mini ovos de sabores à sua escolha. Perfeito para presentear ou para quem não consegue escolher apenas um sabor. Cada ovo com 100g.",
+      "image": "assets/images/trio.jpg",
+      "imageFallback": "🎁",
+      "flavors": [
+        { "id": "beijinho", "label": "Beijinho" },
+        { "id": "brigadeiro", "label": "Brigadeiro" },
+        { "id": "limao", "label": "Limão" },
+        { "id": "maracuja", "label": "Maracujá" },
+        { "id": "morango", "label": "Morango" },
+        { "id": "ninho", "label": "Ninho" }
+      ],
+      "weights": [
+        { "id": "100g-cada", "label": "100g cada (kit com 3)", "price": 70.00 }
+      ],
+      "badge": "Kit Especial",
+      "badgeColor": "#7c3aed",
+      "multiSelect": 3,
+      "note": "Escolha exatamente 3 sabores para compor o seu trio!"
+    }
+  ]
+}
