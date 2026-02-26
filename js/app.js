@@ -321,16 +321,16 @@ $('btnQtyPlus').addEventListener('click', () => {
 btnAddCart.addEventListener('click', () => {
   if (!modalProduct || !modalSelection.weight || !modalSelection.flavors.length) return;
 
+  const _addedProduct = modalProduct; // capture before closeModal clears it
   cart.addItem({
     product:  modalProduct,
     weight:   modalSelection.weight,
-    flavor:   modalSelection.flavors,   // array
+    flavor:   modalSelection.flavors,
     quantity: modalSelection.quantity,
   });
 
   closeModal();
-  showToast(`✅ ${modalProduct.name} adicionado ao carrinho!`);
-  openCart();
+  showCartConfirm(_addedProduct);
 });
 
 // Close modal
@@ -473,6 +473,73 @@ function showToast(message, duration = 3000) {
 // ── Hero CTA ─────────────────────────────────────────────────
 document.getElementById('heroCta').addEventListener('click', () => {
   document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ── Cart Confirm Banner ──────────────────────────────────────────
+const cartConfirmOverlay = document.getElementById('cartConfirmOverlay');
+const ccbProgressBar     = document.getElementById('ccbProgressBar');
+const ccbTitle           = document.getElementById('ccbTitle');
+const ccbSubtitle        = document.getElementById('ccbSubtitle');
+const ccbIcon            = document.getElementById('ccbIcon');
+const ccbContinue        = document.getElementById('ccbContinue');
+const ccbCheckout        = document.getElementById('ccbCheckout');
+
+let _ccbTimer   = null;
+const CCB_DURATION = 6000; // ms
+
+function showCartConfirm(product) {
+  // Clear any running timer
+  clearTimeout(_ccbTimer);
+  ccbProgressBar.classList.remove('running');
+  // Force reflow to restart animation
+  void ccbProgressBar.offsetWidth;
+
+  // Populate
+  ccbTitle.textContent = product.name + ' adicionado!';
+  ccbSubtitle.textContent = 'Deseja finalizar seu pedido?';
+
+  // Icon: try product image, fallback to emoji
+  if (product.image) {
+    const img = document.createElement('img');
+    img.src = product.image;
+    img.alt = product.name;
+    img.onerror = () => { ccbIcon.innerHTML = ''; ccbIcon.textContent = product.imageFallback; };
+    ccbIcon.innerHTML = '';
+    ccbIcon.appendChild(img);
+  } else {
+    ccbIcon.innerHTML = '';
+    ccbIcon.textContent = product.imageFallback;
+  }
+
+  // Show
+  cartConfirmOverlay.classList.add('open');
+
+  // Start progress bar
+  ccbProgressBar.style.transition = 'none';
+  ccbProgressBar.style.transform  = 'scaleX(1)';
+  void ccbProgressBar.offsetWidth;
+  ccbProgressBar.style.transition = `transform ${CCB_DURATION}ms linear`;
+  ccbProgressBar.style.transform  = 'scaleX(0)';
+
+  // Auto-dismiss
+  _ccbTimer = setTimeout(hideCartConfirm, CCB_DURATION);
+}
+
+function hideCartConfirm() {
+  clearTimeout(_ccbTimer);
+  cartConfirmOverlay.classList.remove('open');
+}
+
+ccbContinue.addEventListener('click', hideCartConfirm);
+
+ccbCheckout.addEventListener('click', () => {
+  hideCartConfirm();
+  openCart();
+});
+
+// Dismiss if user clicks the overlay background
+cartConfirmOverlay.addEventListener('click', e => {
+  if (e.target === cartConfirmOverlay) hideCartConfirm();
 });
 
 init();
