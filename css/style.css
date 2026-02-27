@@ -400,6 +400,9 @@ body {
   display: flex;
   flex-direction: column;
   animation: cardIn .4s ease both;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes cardIn {
@@ -424,7 +427,7 @@ body {
   cursor: pointer;
 }
 
-.card-img-wrap:hover .card-img-overlay { opacity: 1; }
+.product-card:hover .card-img-overlay { opacity: 1; }
 
 .card-img {
   width: 100%;
@@ -434,7 +437,7 @@ body {
   display: block;
 }
 
-.card-img-wrap:hover .card-img { transform: scale(1.06); }
+.product-card:hover .card-img { transform: scale(1.06); }
 
 .card-img-fallback {
   width: 100%;
@@ -546,28 +549,26 @@ body {
   border-radius: 50px;
 }
 
-.btn-add-card {
-  width: 100%;
-  background: var(--chocolate);
-  color: var(--white);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  font-family: 'Nunito', sans-serif;
+/* Card CTA hint — inline no price row */
+.card-cta-hint {
+  font-size: .75rem;
   font-weight: 700;
-  font-size: .88rem;
-  cursor: pointer;
+  color: var(--gold);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  align-self: flex-end;
   transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 4px;
 }
 
-.btn-add-card:hover {
-  background: var(--chocolate-mid);
-  transform: translateY(-1px);
+.product-card:hover .card-cta-hint {
+  color: var(--chocolate);
+}
+
+/* Flavor chip muted — informativo, não clicável */
+.flavor-chip.muted {
+  background: var(--cream-darker);
+  color: var(--text-light);
+  font-style: italic;
 }
 
 /* ───────────────────────────────────────────

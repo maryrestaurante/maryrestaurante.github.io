@@ -12,7 +12,23 @@
         "title": "Ovos de Páscoa\nfeitos com <em>amor</em>",
         "subtitle": "Chegou a época mais gostosa do ano! Escolha o seu ovo preferido, personalize do seu jeito e surpreenda quem você ama.",
         "ctaLabel": "🛍️ Ver Ovos de Páscoa"
-      }
+      },
+      "sectionTitle": "Ovos de Páscoa Artesanais"
+    },
+    {
+      "id": "kit-festas",
+      "label": "Kit Festa",
+      "icon": "🎉",
+      "description": "Kit festa personalizado para tornar seus momentos ainda mais especiais",
+      "active": false,
+      "default": false,
+      "hero": {
+        "tag": "Kit Festa",
+        "title": "Kit Festa\nfeitos com <em>amor</em>",
+        "subtitle": "Kits festa personalizado para tornar seus momentos ainda mais especiais.",
+        "ctaLabel": "🛍️ Ver Kits"
+      },
+      "sectionTitle": "Kit Festa"
     }
   ],
   "products": [
@@ -21,15 +37,24 @@
       "category": "pascoa",
       "name": "Mini Confeiteiro",
       "description": "Ovo de Páscoa decorado com confeitos coloridos, feito para encantar os pequenos e os grandes também. Uma verdadeira obra de arte comestível!",
-      "image": "assets/images/mini-confeiteiro.jpg",
-      "image2": null,
+      "image": "assets/images/mini-confeiteiro2.png",
       "imageFallback": "🍫",
       "flavors": [
-        { "id": "branco", "label": "Chocolate Branco" },
-        { "id": "ao-leite", "label": "Chocolate ao Leite" }
+        {
+          "id": "branco",
+          "label": "Chocolate Branco"
+        },
+        {
+          "id": "ao-leite",
+          "label": "Chocolate ao Leite"
+        }
       ],
       "weights": [
-        { "id": "150g", "label": "150g", "price": 35.00 }
+        {
+          "id": "150g",
+          "label": "150g",
+          "price": 35.0
+        }
       ],
       "badge": "Novo",
       "badgeColor": "#e91e8c"
@@ -39,20 +64,50 @@
       "category": "pascoa",
       "name": "Trufados",
       "description": "Ovo com recheio cremoso irresistível. Casca de chocolate com recheio que derrete na boca. Disponível em vários sabores para agradar todos os gostos.",
-      "image": "assets/images/trufado.jpg",
+      "image": "assets/images/trufado2.png",
       "imageFallback": "🍫",
       "flavors": [
-        { "id": "beijinho", "label": "Beijinho" },
-        { "id": "brigadeiro", "label": "Brigadeiro" },
-        { "id": "limao", "label": "Limão" },
-        { "id": "maracuja", "label": "Maracujá" },
-        { "id": "morango", "label": "Morango" },
-        { "id": "ninho", "label": "Ninho" }
+        {
+          "id": "beijinho",
+          "label": "Beijinho"
+        },
+        {
+          "id": "brigadeiro",
+          "label": "Brigadeiro"
+        },
+        {
+          "id": "limao",
+          "label": "Limão"
+        },
+        {
+          "id": "maracuja",
+          "label": "Maracujá"
+        },
+        {
+          "id": "morango",
+          "label": "Morango"
+        },
+        {
+          "id": "ninho",
+          "label": "Ninho"
+        }
       ],
       "weights": [
-        { "id": "150g", "label": "150g", "price": 25.00 },
-        { "id": "250g", "label": "250g", "price": 35.00 },
-        { "id": "350g", "label": "350g", "price": 55.00 }
+        {
+          "id": "150g",
+          "label": "150g",
+          "price": 25.0
+        },
+        {
+          "id": "250g",
+          "label": "250g",
+          "price": 35.0
+        },
+        {
+          "id": "350g",
+          "label": "350g",
+          "price": 55.0
+        }
       ],
       "badge": "Popular",
       "badgeColor": "#f59e0b"
@@ -62,20 +117,50 @@
       "category": "pascoa",
       "name": "De Colher",
       "description": "Ovo de Páscoa recheado com creme para comer de colher. Uma experiência única de sabor e textura que vai surpreender quem você ama.",
-      "image": "assets/images/de-colher.jpg",
+      "image": "assets/images/de-colher.png",
       "imageFallback": "🥄",
       "flavors": [
-        { "id": "beijinho", "label": "Beijinho" },
-        { "id": "brigadeiro", "label": "Brigadeiro" },
-        { "id": "limao", "label": "Limão" },
-        { "id": "maracuja", "label": "Maracujá" },
-        { "id": "morango", "label": "Morango" },
-        { "id": "ninho", "label": "Ninho" }
+        {
+          "id": "beijinho",
+          "label": "Beijinho"
+        },
+        {
+          "id": "brigadeiro",
+          "label": "Brigadeiro"
+        },
+        {
+          "id": "limao",
+          "label": "Limão"
+        },
+        {
+          "id": "maracuja",
+          "label": "Maracujá"
+        },
+        {
+          "id": "morango",
+          "label": "Morango"
+        },
+        {
+          "id": "ninho",
+          "label": "Ninho"
+        }
       ],
       "weights": [
-        { "id": "150g", "label": "150g", "price": 25.00 },
-        { "id": "250g", "label": "250g", "price": 35.00 },
-        { "id": "350g", "label": "350g", "price": 60.00 }
+        {
+          "id": "150g",
+          "label": "150g",
+          "price": 25.0
+        },
+        {
+          "id": "250g",
+          "label": "250g",
+          "price": 35.0
+        },
+        {
+          "id": "350g",
+          "label": "350g",
+          "price": 60.0
+        }
       ],
       "badge": null,
       "badgeColor": null
@@ -85,18 +170,40 @@
       "category": "pascoa",
       "name": "Trio de Ovos",
       "description": "Kit especial com três mini ovos de sabores à sua escolha. Perfeito para presentear ou para quem não consegue escolher apenas um sabor. Cada ovo com 100g.",
-      "image": "assets/images/trio.jpg",
+      "image": "assets/images/trio.png",
       "imageFallback": "🎁",
       "flavors": [
-        { "id": "beijinho", "label": "Beijinho" },
-        { "id": "brigadeiro", "label": "Brigadeiro" },
-        { "id": "limao", "label": "Limão" },
-        { "id": "maracuja", "label": "Maracujá" },
-        { "id": "morango", "label": "Morango" },
-        { "id": "ninho", "label": "Ninho" }
+        {
+          "id": "beijinho",
+          "label": "Beijinho"
+        },
+        {
+          "id": "brigadeiro",
+          "label": "Brigadeiro"
+        },
+        {
+          "id": "limao",
+          "label": "Limão"
+        },
+        {
+          "id": "maracuja",
+          "label": "Maracujá"
+        },
+        {
+          "id": "morango",
+          "label": "Morango"
+        },
+        {
+          "id": "ninho",
+          "label": "Ninho"
+        }
       ],
       "weights": [
-        { "id": "100g-cada", "label": "100g cada (kit com 3)", "price": 70.00 }
+        {
+          "id": "100g-cada",
+          "label": "100g cada (kit com 3)",
+          "price": 70.0
+        }
       ],
       "badge": "Kit Especial",
       "badgeColor": "#7c3aed",

@@ -78,7 +78,7 @@ async function init() {
     const res = await fetch(DATA_URL);
     if (!res.ok) throw new Error('Falha ao carregar produtos');
     const data = await res.json();
-    allCategories = data.categories;
+    allCategories = data.categories.filter(c => c.active !== false);
     allProducts   = data.products;
     renderCategoryNav();
     selectCategory(allCategories.find(c => c.default) || allCategories.find(c => c.active) || allCategories[0]);
@@ -115,7 +115,7 @@ function selectCategory(cat) {
     btn.classList.toggle('active', btn.dataset.cat === cat.id);
   });
   sectionLabel.textContent = cat.icon + ' ' + cat.label;
-  sectionTitle.textContent = 'Ovos de Páscoa Artesanais';
+  sectionTitle.textContent = cat.sectionTitle || cat.label;
   sectionDesc.textContent  = cat.description;
   renderProducts(allProducts.filter(p => p.category === cat.id));
 }
@@ -134,8 +134,8 @@ function renderProducts(products) {
     const moreCount = p.flavors.length - 4;
 
     return `
-    <article class="product-card" style="animation-delay:${i * .05}s">
-      <div class="card-img-wrap" data-product-id="${p.id}" role="button" tabindex="0" aria-label="Ver detalhes de ${p.name}">
+    <article class="product-card" data-product-id="${p.id}" role="button" tabindex="0" aria-label="Ver detalhes de ${p.name}" style="animation-delay:${i * .05}s">
+      <div class="card-img-wrap">
         <img class="card-img" src="${p.image}" alt="${p.name}" loading="${i < 4 ? 'eager' : 'lazy'}"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
         <div class="card-img-fallback" style="display:none">${p.imageFallback}</div>
@@ -147,22 +147,20 @@ function renderProducts(products) {
         <p class="card-desc">${p.description}</p>
         <div class="card-flavors-hint">
           ${flavorsPreview}
-          ${moreCount > 0 ? `<span class="flavor-chip">+${moreCount}</span>` : ''}
+          ${moreCount > 0 ? `<span class="flavor-chip muted">+${moreCount} sabores</span>` : ''}
         </div>
         <div class="card-price-row">
           <div>
             ${hasMultiple ? `<span class="card-price-from">A partir de</span><br>` : ''}
             <span class="card-price">${formatCurrency(minPrice)}</span>
           </div>
+          <span class="card-cta-hint">Ver opções →</span>
         </div>
-        <button class="btn-add-card" data-product-id="${p.id}">
-          <span>🛒</span> Adicionar ao Carrinho
-        </button>
       </div>
     </article>`;
   }).join('');
 
-  productGrid.querySelectorAll('[data-product-id]').forEach(el => {
+  productGrid.querySelectorAll('article[data-product-id]').forEach(el => {
     el.addEventListener('click', () => openModal(el.dataset.productId));
     el.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') openModal(el.dataset.productId);
@@ -394,7 +392,7 @@ function renderCart(c) {
       <div class="cart-empty">
         <div class="cart-empty-icon">🛒</div>
         <h3>Seu carrinho está vazio</h3>
-        <p>Escolha seus ovos de Páscoa favoritos e adicione aqui!</p>
+        <p>Explore o cardápio e adicione seus favoritos aqui!</p>
       </div>`;
     return;
   }
